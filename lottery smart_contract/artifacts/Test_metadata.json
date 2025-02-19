@@ -12,19 +12,12 @@
 			},
 			{
 				"inputs": [],
-				"name": "enter",
-				"outputs": [],
-				"stateMutability": "payable",
-				"type": "function"
-			},
-			{
-				"inputs": [],
-				"name": "manager",
+				"name": "getMyArray",
 				"outputs": [
 					{
-						"internalType": "address",
+						"internalType": "string[]",
 						"name": "",
-						"type": "address"
+						"type": "string[]"
 					}
 				],
 				"stateMutability": "view",
@@ -38,12 +31,12 @@
 						"type": "uint256"
 					}
 				],
-				"name": "players",
+				"name": "myArray",
 				"outputs": [
 					{
-						"internalType": "address",
+						"internalType": "string",
 						"name": "",
-						"type": "address"
+						"type": "string"
 					}
 				],
 				"stateMutability": "view",
@@ -63,7 +56,7 @@
 	},
 	"settings": {
 		"compilationTarget": {
-			"lottery smart_contract/lottery.sol": "Lottery"
+			"lottery smart_contract/lottery.sol": "Test"
 		},
 		"evmVersion": "paris",
 		"libraries": {},
@@ -78,11 +71,11 @@
 	},
 	"sources": {
 		"lottery smart_contract/lottery.sol": {
-			"keccak256": "0x13a2c889ac0a68a31766d35e8de284684926ff099be123cb6a3f0637a7ce3283",
+			"keccak256": "0xd6ecddd751d8275bd4c692582ed17833fd4380cfed4507e3f09616a55326e20f",
 			"license": "MIT",
 			"urls": [
-				"bzz-raw://609aaf104672c620948f06b42e7e02c9a657ea20f241ef6099de317f5c81757c",
-				"dweb:/ipfs/QmPzw7xbkcuQnnnzwkgHpTJFK3dBmRvMePVeyP7j39CgMn"
+				"bzz-raw://cf5ebe90a8c30b35e0551bec44322cf90a9d1cecfe2ee4f3c75c205353ae57e7",
+				"dweb:/ipfs/QmTLD5S7ZVGcQLQRsWdPNq9k6crBHDTY92yrJaCp32qRLN"
 			]
 		}
 	},
