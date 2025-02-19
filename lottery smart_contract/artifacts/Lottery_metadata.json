@@ -31,6 +31,19 @@
 				"type": "function"
 			},
 			{
+				"inputs": [],
+				"name": "pickWinner",
+				"outputs": [
+					{
+						"internalType": "address",
+						"name": "",
+						"type": "address"
+					}
+				],
+				"stateMutability": "view",
+				"type": "function"
+			},
+			{
 				"inputs": [
 					{
 						"internalType": "uint256",
@@ -78,11 +91,11 @@
 	},
 	"sources": {
 		"lottery smart_contract/lottery.sol": {
-			"keccak256": "0x0d14bed587dcd8d8869e3b8bd85f6914cd75b841baaf5deccf6063844f4dd0ff",
+			"keccak256": "0x8cacc8c4088dc19b7cf01d1adcc413f20421bbcfac99db72cd5914a6c9054841",
 			"license": "MIT",
 			"urls": [
-				"bzz-raw://8959320a0fffdfd6e836f3d0342f30f7c0487a7da7d3ae5aba4ff165bfd86b95",
-				"dweb:/ipfs/QmedSMx6NhxouDHuKmTTDXBjH7g5WSNpMQbedthrT1pjDW"
+				"bzz-raw://f2e4067a04240d103e30764b9072a945bff887bb17e5d8e03b9f1f8a29f89521",
+				"dweb:/ipfs/QmQjQviRrK5hHWYmRcqnLjSS93qASQKdKMwSuzsR7pnwTh"
 			]
 		}
 	},
