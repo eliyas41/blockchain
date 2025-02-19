@@ -19,7 +19,7 @@ const deploy = async () => {
     .send({ from: accounts[0], gas: '1000000' });
 
   console.log(inbox.options.address);
-  provider.engine.stop();
+  // provider.engine.stop();
 }
 
 deploy();
