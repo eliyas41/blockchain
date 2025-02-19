@@ -14,4 +14,8 @@ contract Lottery{
         require(msg.value < .01 ether, "The amount should be greater than .01 ether");
         players.push(msg.sender);
     }
+
+    function random() private view returns (uint) {
+    return uint(keccak256(abi.encodePacked(block.prevrandao, block.timestamp, players)));
+}
 }
