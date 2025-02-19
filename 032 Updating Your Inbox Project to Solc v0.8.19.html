@@ -1,0 +1,130 @@
+<p>This lecture will walk you through all of the changes needed to bring your project up to date with the latest Solc v0.8.19.</p><p><strong>Environment Setup</strong></p><p>Due to expected dependency conflicts with old installed versions, it would be best to create a brand-new project.</p><p>In your terminal of choice, run the following:</p><ol><li><p><code>mkdir inbox-updated</code></p></li><li><p><code>cd inbox-updated</code></p></li><li><p><code>npm init -y</code></p></li><li><p><code>npm install --save-exact solc@0.8.19 web3 mocha ganache @truffle/hdwallet-provider</code></p></li><li><p>Update your test script in the package.json file to be <code>"test": "mocha"</code></p></li><li><p>Copy your contracts directory (containing Inbox.sol), test directory (containing Inbox.test.js), compile.js, and deploy.js into the new inbox-updated project directory. </p></li></ol><p>Here is the package.json file for reference (your versions should not be lower than those specified below):</p><pre class="prettyprint linenums">{
+  "name": "inbox-updated",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "mocha"
+  },
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "@truffle/hdwallet-provider": "^2.1.15",
+    "ganache": "^7.9.2",
+    "mocha": "^10.4.0",
+    "solc": "0.8.19",
+    "web3": "^4.9.0"
+  }
+}</pre><p><strong>Inbox.sol</strong></p><pre class="prettyprint linenums">// SPDX-License-Identifier: MIT
+
+pragma solidity 0.8.19;
+
+contract Inbox {
+    string public message;
+    
+    constructor(string memory initialMessage) {
+        message = initialMessage;
+    }
+    
+    function setMessage(string memory newMessage) public {
+        message = newMessage;
+    }
+}</pre><p>Outline of changes:</p><ol><li><p>Update the pragma version at the top of the contract file to <strong>0.8.19</strong></p></li><li><p>Refactor the Inbox constructor to use the new <strong>constructor</strong> keyword - <a href="https://docs.soliditylang.org/en/v0.8.9/050-breaking-changes.html" rel="noopener noreferrer" target="_blank">Source</a>.</p></li><li><p>Specify the data location of the variables to be <strong>memory</strong> - <a href="https://docs.soliditylang.org/en/v0.8.9/050-breaking-changes.html#explicitness-requirements" rel="noopener noreferrer" target="_blank">Source</a>.</p></li><li><p>Remove the <strong>public</strong> keyword from the constructor - <a href="https://docs.soliditylang.org/en/v0.8.9/070-breaking-changes.html?highlight=constructor" rel="noopener noreferrer" target="_blank">Source</a>.</p></li><li><p>Add an SPDX&nbsp;identifier to the top of the contract (will address compilation warnings) - <a href="https://docs.soliditylang.org/en/v0.8.9/layout-of-source-files.html" rel="noopener noreferrer" target="_blank">Source</a>.</p></li></ol><p><strong>compile.js</strong></p><pre class="prettyprint linenums">const path = require('path');
+const fs = require('fs');
+const solc = require('solc');
+
+const inboxPath = path.resolve(__dirname, 'contracts', 'Inbox.sol');
+const source = fs.readFileSync(inboxPath, 'utf8');
+
+const input = {
+  language: 'Solidity',
+  sources: {
+    'Inbox.sol': {
+      content: source,
+    },
+  },
+  settings: {
+    outputSelection: {
+      '*': {
+        '*': ['*'],
+      },
+    },
+  },
+};
+
+module.exports = JSON.parse(solc.compile(JSON.stringify(input))).contracts[
+  'Inbox.sol'
+].Inbox;</pre><p>Outline of changes:</p><ol><li><p>Add the expected JSON&nbsp;formatted input, specifying the language, sources, and outputSelection - <a href="https://docs.soliditylang.org/en/v0.8.7/using-the-compiler.html#compiler-input-and-output-json-description" rel="noopener noreferrer" target="_blank">Source</a>.</p></li><li><p>Update the export to provide the expected JSON&nbsp;formatted output - <a href="https://github.com/ethereum/solc-js#example-usage-without-the-import-callback" rel="noopener noreferrer" target="_blank">Source</a></p></li><li><p>Note - the output is structured differently so the accessors have changed slightly. If you have a doubt you can add a console.log to view this structure:<br></p><pre class="prettyprint linenums">console.log(JSON.parse(solc.compile(JSON.stringify(input))).contracts);</pre><p>This will return the following:</p><pre class="prettyprint linenums">{
+  'Inbox.sol': {
+    Inbox: {
+      abi: [Array],
+      devdoc: [Object],
+      evm: [Object],
+      ewasm: [Object],
+      metadata: '{...}',
+      storageLayout: [Object],
+      userdoc: [Object]
+    }
+  }
+}</pre></li></ol><p><strong>Inbox.test.js</strong></p><pre class="prettyprint linenums">const assert = require('assert');
+const ganache = require('ganache');
+const { Web3 } = require('web3');
+const web3 = new Web3(ganache.provider());
+
+const { abi, evm } = require('../compile');
+
+let accounts;
+let inbox;
+
+beforeEach(async () =&gt; {
+  // Get a list of all accounts
+  accounts = await web3.eth.getAccounts();
+  inbox = await new web3.eth.Contract(abi)
+    .deploy({
+      data: evm.bytecode.object,
+      arguments: ['Hi there!'],
+    })
+    .send({ from: accounts[0], gas: '1000000' });
+});
+
+describe('Inbox', () =&gt; {
+  it('deploys a contract', () =&gt; {
+    assert.ok(inbox.options.address);
+  });
+  it('has a default message', async () =&gt; {
+    const message = await inbox.methods.message().call();
+    assert.equal(message, 'Hi there!');
+  });
+  it('can change the message', async () =&gt; {
+    await inbox.methods.setMessage('bye').send({ from: accounts[0] });
+    const message = await inbox.methods.message().call();
+    assert.equal(message, 'bye');
+  });
+});</pre><p>Outline of changes:</p><ol><li><p>Update the import to destructure the <strong>abi</strong> (formerly the interface) and the <strong>evm</strong> (bytecode)<br><code>const { <strong>abi, evm</strong> } = require('../compile');</code></p></li><li><p>Pass the <strong>abi</strong> to the contract object<br>&nbsp; <code>inbox = await new web3.eth.Contract(<strong>abi</strong>)</code></p></li><li><p>Assign the bytecode to the data property of the deploy method:</p><pre class="prettyprint linenums">    .deploy({
+      data: evm.bytecode.object, </pre></li></ol><p><strong>deploy.js</strong></p><pre class="prettyprint linenums">const HDWalletProvider = require('@truffle/hdwallet-provider');
+const { Web3&nbsp;} = require('web3');
+
+const { abi, evm } = require('./compile');
+
+provider = new HDWalletProvider(
+  'YOUR_MNEMONIC',
+  'YOUR_INFURA_URL'
+);
+
+const web3 = new Web3(provider);
+
+const deploy = async () =&gt; {
+  const accounts = await web3.eth.getAccounts();
+
+  console.log('Attempting to deploy from account', accounts[0]);
+
+  const result = await new web3.eth.Contract(abi)
+    .deploy({ data: evm.bytecode.object, arguments: ['Hi there!'] })
+    .send({ gas: '1000000', from: accounts[0] });
+
+  console.log('Contract deployed to', result.options.address);
+  provider.engine.stop();
+};
+
+deploy();</pre><p>Outline of changes:</p><ol><li><p>Update the import to use the newer <strong>@truffle/hdwallet-provider</strong> module.</p></li><li><p>Update the import to destructure the <strong>abi</strong> (formerly the interface) and the <strong>evm</strong> (bytecode)<br><code>const { <strong>abi, evm</strong> } = require('./compile');</code></p></li><li><p>Pass the <strong>abi</strong> to the contract object:<br><code>const result = await new web3.eth.Contract(<strong>abi</strong>)</code></p></li><li><p>Assign the bytecode to the data property of the deploy method:</p><pre class="prettyprint linenums">    .deploy({
+      data: evm.bytecode.object, </pre></li><li><p>Call <strong>provider.engine.stop()</strong> to prevent deployment from hanging in the terminal -&nbsp;<a href="https://github.com/trufflesuite/truffle/tree/master/packages/hdwallet-provider#general-usage" rel="noopener noreferrer" target="_blank">Source</a></p></li></ol><p><strong>Completed Code</strong></p><p>Completed project with all changes described above can be found attached to this lecture note as a zip file.</p>
