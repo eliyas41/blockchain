@@ -11,7 +11,7 @@ contract Lottery{
     }
 
     function enter() public payable  {
-        // require(msg.sender != address(0), "Entrance is invalid");
+        require(msg.value < .01 ether, "The amount should be greater than .01 ether");
         players.push(msg.sender);
     }
 }
