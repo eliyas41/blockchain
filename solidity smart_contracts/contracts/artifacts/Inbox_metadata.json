@@ -1,0 +1,83 @@
+{
+	"compiler": {
+		"version": "0.8.19+commit.7dd6d404"
+	},
+	"language": "Solidity",
+	"output": {
+		"abi": [
+			{
+				"inputs": [
+					{
+						"internalType": "string",
+						"name": "initialMessage",
+						"type": "string"
+					}
+				],
+				"stateMutability": "nonpayable",
+				"type": "constructor"
+			},
+			{
+				"inputs": [],
+				"name": "message",
+				"outputs": [
+					{
+						"internalType": "string",
+						"name": "",
+						"type": "string"
+					}
+				],
+				"stateMutability": "view",
+				"type": "function"
+			},
+			{
+				"inputs": [
+					{
+						"internalType": "string",
+						"name": "newMessage",
+						"type": "string"
+					}
+				],
+				"name": "setMessage",
+				"outputs": [],
+				"stateMutability": "nonpayable",
+				"type": "function"
+			}
+		],
+		"devdoc": {
+			"kind": "dev",
+			"methods": {},
+			"version": 1
+		},
+		"userdoc": {
+			"kind": "user",
+			"methods": {},
+			"version": 1
+		}
+	},
+	"settings": {
+		"compilationTarget": {
+			"solidity smart_contracts/contracts/Inbox.sol": "Inbox"
+		},
+		"evmVersion": "paris",
+		"libraries": {},
+		"metadata": {
+			"bytecodeHash": "ipfs"
+		},
+		"optimizer": {
+			"enabled": false,
+			"runs": 200
+		},
+		"remappings": []
+	},
+	"sources": {
+		"solidity smart_contracts/contracts/Inbox.sol": {
+			"keccak256": "0xece5cac81b06c3208003d22c7b49f6ad4bdf490361bf80d3bd4b6605a9c00fc4",
+			"license": "MIT",
+			"urls": [
+				"bzz-raw://662626afb90fa908a7fe6898d443b409d4cc0ae401d107ea5b822e2ec025621b",
+				"dweb:/ipfs/Qma7QUkXBwBGXAhc7oEE7LvNLNbvVUipN6R2wbVLRvPfhc"
+			]
+		}
+	},
+	"version": 1
+}

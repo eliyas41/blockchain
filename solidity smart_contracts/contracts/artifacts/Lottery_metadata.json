@@ -1,0 +1,64 @@
+{
+	"compiler": {
+		"version": "0.8.19+commit.7dd6d404"
+	},
+	"language": "Solidity",
+	"output": {
+		"abi": [
+			{
+				"inputs": [],
+				"stateMutability": "nonpayable",
+				"type": "constructor"
+			},
+			{
+				"inputs": [],
+				"name": "manager",
+				"outputs": [
+					{
+						"internalType": "address",
+						"name": "",
+						"type": "address"
+					}
+				],
+				"stateMutability": "view",
+				"type": "function"
+			}
+		],
+		"devdoc": {
+			"kind": "dev",
+			"methods": {},
+			"version": 1
+		},
+		"userdoc": {
+			"kind": "user",
+			"methods": {},
+			"version": 1
+		}
+	},
+	"settings": {
+		"compilationTarget": {
+			"solidity smart_contracts/contracts/Inbox.sol": "Lottery"
+		},
+		"evmVersion": "paris",
+		"libraries": {},
+		"metadata": {
+			"bytecodeHash": "ipfs"
+		},
+		"optimizer": {
+			"enabled": false,
+			"runs": 200
+		},
+		"remappings": []
+	},
+	"sources": {
+		"solidity smart_contracts/contracts/Inbox.sol": {
+			"keccak256": "0xe2cf693a1762f424e8206817e3ac8d51dfe0c5d48b530111f21ef38bdf120c14",
+			"license": "MIT",
+			"urls": [
+				"bzz-raw://c991007803aba97e50682a909c0383b50c331dd25ceac6d4727f126d6af0e498",
+				"dweb:/ipfs/QmS2cr9PsfWZ1qNxTdfyCgrMWUHJPMsE5NsuMzzdADVTnd"
+			]
+		}
+	},
+	"version": 1
+}

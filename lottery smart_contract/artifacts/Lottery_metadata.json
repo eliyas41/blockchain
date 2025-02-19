@@ -1,0 +1,59 @@
+{
+	"compiler": {
+		"version": "0.8.19+commit.7dd6d404"
+	},
+	"language": "Solidity",
+	"output": {
+		"abi": [
+			{
+				"inputs": [],
+				"name": "manager",
+				"outputs": [
+					{
+						"internalType": "address",
+						"name": "",
+						"type": "address"
+					}
+				],
+				"stateMutability": "view",
+				"type": "function"
+			}
+		],
+		"devdoc": {
+			"kind": "dev",
+			"methods": {},
+			"version": 1
+		},
+		"userdoc": {
+			"kind": "user",
+			"methods": {},
+			"version": 1
+		}
+	},
+	"settings": {
+		"compilationTarget": {
+			"lottery smart_contract/lottery.sol": "Lottery"
+		},
+		"evmVersion": "paris",
+		"libraries": {},
+		"metadata": {
+			"bytecodeHash": "ipfs"
+		},
+		"optimizer": {
+			"enabled": false,
+			"runs": 200
+		},
+		"remappings": []
+	},
+	"sources": {
+		"lottery smart_contract/lottery.sol": {
+			"keccak256": "0xbdaef6853d1c49780d75d562adf724c8a446e484e1b61115919e4b3e019721d3",
+			"license": "MIT",
+			"urls": [
+				"bzz-raw://e95739c9d3489ce68b4038b7b9d9da0902cb6eeb9702a7c03be98559d661295c",
+				"dweb:/ipfs/QmVsBfsZkyZ5KwaXrtHZhbyksks8e1S7YJ6CDYy334cQRS"
+			]
+		}
+	},
+	"version": 1
+}
