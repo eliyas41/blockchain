@@ -85,11 +85,11 @@
 	},
 	"sources": {
 		"lottery smart_contract/lottery.sol": {
-			"keccak256": "0xf51a001ca82df6691d18812f388cec77fdefab772d5b61eb5acd28920205ef01",
+			"keccak256": "0x8d7f272040554972570d85eaddf42fb94677bd8deb2d557369f5663e4559dd34",
 			"license": "MIT",
 			"urls": [
-				"bzz-raw://5dcb86d1fef3be83760264b97ec310da99af9632834ecb47db4aedfad570bdd5",
-				"dweb:/ipfs/QmbfxtVDc6xxvFnXRKmAGqPeD3FFBKrWA5XjRqCkBVDYpt"
+				"bzz-raw://0e5242afe7f32a96594e7ccf2c414abd068d3d3d044a63a818a8eff4e1712cc6",
+				"dweb:/ipfs/QmW2iCSLbV4FoamAuEGo4XK5iq2HPNjmZ8PaCBvQxfLuMB"
 			]
 		}
 	},
