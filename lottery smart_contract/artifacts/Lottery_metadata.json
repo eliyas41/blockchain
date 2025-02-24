@@ -19,6 +19,19 @@
 			},
 			{
 				"inputs": [],
+				"name": "getPlayers",
+				"outputs": [
+					{
+						"internalType": "address payable[]",
+						"name": "",
+						"type": "address[]"
+					}
+				],
+				"stateMutability": "view",
+				"type": "function"
+			},
+			{
+				"inputs": [],
 				"name": "manager",
 				"outputs": [
 					{
@@ -85,11 +98,11 @@
 	},
 	"sources": {
 		"lottery smart_contract/lottery.sol": {
-			"keccak256": "0x8d7f272040554972570d85eaddf42fb94677bd8deb2d557369f5663e4559dd34",
+			"keccak256": "0x824b14a7bf62a022a9014a6e4c9134c122f77f8c687575286388226484532842",
 			"license": "MIT",
 			"urls": [
-				"bzz-raw://0e5242afe7f32a96594e7ccf2c414abd068d3d3d044a63a818a8eff4e1712cc6",
-				"dweb:/ipfs/QmW2iCSLbV4FoamAuEGo4XK5iq2HPNjmZ8PaCBvQxfLuMB"
+				"bzz-raw://3a81cb7b51b194c0a8029492e3d1f5f749a7559cd112f79705f3c21c3cdeb22a",
+				"dweb:/ipfs/QmTccXhAjpB2h2DeKdrLV1zmPaE4kSeHsvqX6auwc3ExCF"
 			]
 		}
 	},

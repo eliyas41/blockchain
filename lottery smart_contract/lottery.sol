@@ -38,4 +38,9 @@ contract Lottery{
         require(msg.sender == manager, "Not the manager");
         _;
     }
+
+    // function to get all players
+    function getPlayers() public view returns(address payable[] memory){
+        return players;
+    }
 }
