@@ -21,15 +21,16 @@ contract Lottery{
     return uint(keccak256(abi.encodePacked(block.prevrandao, block.timestamp, players)));
     }
 
-       function pickWinner() public {
-        // require(players.length > 0, "No players in the lottery");
+function pickWinner() public {
+    require(players.length > 0, "No players in the lottery");
 
-        uint index = random() % players.length;
-        address payable winner = players[index];
+    uint index = random() % players.length;
+    address payable winner = players[index];
 
-        (bool success, ) = winner.call{value: address(this).balance}(""); // Transfer funds
-        require(success, "Transfer failed");
-
-        // players = new address payable ; // Reset players array for next round
-    }
+    (bool success,) = winner.call{value: address(this).balance}("");
+    require(success,"Transfer failed");
+    
+    // Fix: Create a new array with zero elements
+    players = new address payable[](0);
+}
 }
