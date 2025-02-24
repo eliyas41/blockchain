@@ -2,13 +2,13 @@ const path = require('path');
 const fs = require('fs');
 const solc = require('solc');
 
-const lotteryPath = path.resolve(__dirname, 'contracts', 'lottery.sol');
+const lotteryPath = path.resolve(__dirname, 'contracts', 'Lottery.sol');
 const source = fs.readFileSync(lotteryPath, 'utf8');
 
 const input = {
   language: 'Solidity',
   sources: {
-    'Inbox.sol': {
+    'Lottery.sol': {
       content: source,
     },
   },
@@ -22,5 +22,5 @@ const input = {
 };
 
 module.exports = JSON.parse(solc.compile(JSON.stringify(input))).contracts[
-  'lottery.sol'
-].Inbox;
+  'Lottery.sol'
+].Lottery;
